@@ -1,0 +1,41 @@
+<?php
+/** @var \App\Entity\Product $product */
+?>
+<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <a href="<?php echo $this->url('product.create');?>" class="btn btn-primary">
+                <i class="fa fa-plus-circle"></i> Novo
+            </a>
+        </div>
+        <div class="panel-body">
+            <?php
+            echo $this->form()->openTag(new \Zend\Form\Form());
+            echo $this->form()->closeTag();
+            ?>
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <th>Nome</th>
+                    <th>V. Venda</th>
+                    <th>V. Custo</th>
+                    <th>Quant.</th>
+                    <th>Ações</th>
+                </tr>
+                <?php foreach($this->products as $product): ?>
+                    <tr>
+                        <td><?php echo $this->escapeHtml($product->getName()); ?></td>
+                        <td><?php echo $product->getValueSale(); ?></td>
+                        <td><?php echo $product->getValueCost(); ?></td>
+                        <td><?php echo $product->getQuantity(); ?></td>
+                        <td>
+                            <a href="<?php echo $this->url('product.update', ['id' => $product->getId()]);?>">Editar</a> |
+                            <a href="<?php echo $this->url('product.delete', ['id' => $product->getId()]);?>">Excluir</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

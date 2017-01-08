@@ -1,0 +1,62 @@
+<?php
+/** @var \App\Form\ProductForm $form */
+$form = $this->form;
+$name = $form->get('name');
+$name->setAttribute('class', 'form-control')
+    ->setLabelAttributes(['class' => 'control-label']);
+
+$valueSale = $form->get('value_sale');
+$valueSale->setAttribute('class', 'form-control')
+    ->setLabelAttributes(['class' => 'control-label']);
+
+$valueCost = $form->get('value_cost');
+$valueCost->setAttribute('class', 'form-control');
+
+$quantity = $form->get('quantity');
+$quantity->setAttribute('class', 'form-control');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary')->setLabel('Incluir');
+?>
+
+<?php $form->setAttribute('action', $this->url('product.create')); ?>
+<?php $form->prepare(); ?>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Cadastro de produto
+            </div>
+            <?php echo $this->form()->openTag($this->form); ?>
+            <div class="panel-body">
+                <?php $message = $this->formElementErrors($name, ['class' => 'help-block']); ?>
+                <div class="form-group <?php echo $message ? 'has-error' : ''; ?>">
+                    <?php echo $this->formLabel($name); ?>
+                    <?php echo $this->formElement($name); ?>
+                    <?php echo $message; ?>
+                </div>
+
+                <?php $message = $this->formElementErrors($valueSale, ['class' => 'help-block']); ?>
+                <div class="form-group <?php echo $message ? 'has-error' : ''; ?>">
+                    <?php echo $this->formLabel($valueSale); ?>
+                    <?php echo $this->formElement($valueSale); ?>
+                    <?php echo $message; ?>
+                </div>
+
+                <div class="form-group">
+                    <?php echo $this->formRow($valueCost); ?>
+                </div>
+
+                <div class="form-group">
+                    <?php echo $this->formRow($quantity); ?>
+                </div>
+
+                <div class="panel-footer">
+                    <?php echo $this->formButton($submit); ?>
+                </div>
+                <?php $this->form()->closeTag(); ?>
+            </div>
+        </div>
+    </div>
+</div>
