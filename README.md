@@ -1,4 +1,4 @@
-# Expressive Skeleton and Installer
+# Crud Expressive
 
 ```bash
 $ composer update
